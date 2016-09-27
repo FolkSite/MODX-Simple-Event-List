@@ -1,0 +1,185 @@
+<?php return array (
+  'unique_key' => 'category',
+  'preserve_keys' => false,
+  'update_object' => true,
+  'related_objects' => 
+  array (
+    'Chunks' => 
+    array (
+      '0eb1d5ad26311a575dc7f3b3b9dc5804' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":null,"source":0,"property_preprocess":0,"name":"SimpleEvents-upcoming-outer","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"<ul class=\\"list-group\\">[[+rows]]<\\/ul>\\n","locked":0,"properties":"a:0:{}","static":0,"static_file":"","content":"<ul class=\\"list-group\\">[[+rows]]<\\/ul>\\n"}',
+        'guid' => '7b9dee573f540b614cc8ad6dcf268b28',
+        'native_key' => NULL,
+        'signature' => '66d72581c07f8b7d08cba58d1555f752',
+      ),
+      '845b3bce53d411b865cf862c8287719e' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modChunk',
+        'object' => '{"id":null,"source":0,"property_preprocess":0,"name":"SimpleEvents-upcoming-tpl","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"<li>\\n    <a href=\\"[[+url]]\\" class=\\"list-group-item\\"><span class=\\"date\\">[[+date]]<\\/span> | <span class=\\"title\\">[[+title]]<\\/span> | <span class=\\"location\\">[[+location]]<\\/span><\\/a>\\n<\\/li>\\n","locked":0,"properties":"a:0:{}","static":0,"static_file":"","content":"<li>\\n    <a href=\\"[[+url]]\\" class=\\"list-group-item\\"><span class=\\"date\\">[[+date]]<\\/span> | <span class=\\"title\\">[[+title]]<\\/span> | <span class=\\"location\\">[[+location]]<\\/span><\\/a>\\n<\\/li>\\n"}',
+        'guid' => '55f45ce0238329bb4128096fdba50cef',
+        'native_key' => NULL,
+        'signature' => '40814dd1b43294053755379811754a3d',
+      ),
+    ),
+    'Snippets' => 
+    array (
+      'e7299d5f613bd5fddad63652a2dd6d54' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":null,"source":0,"property_preprocess":0,"name":"SimpleEventsUpcoming","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/* SimpleEventsUpcoming\\n*  Wayne Roddy ( wayne@modx.com )\\n*  Sept. 2016\\n*  I\'m not a PHP developer. No laughing\\n*  Shows Children (Events) that are \\"Upcoming\\" from this parent resource\\n*  Children (Events) of this parent should have the 4 Template Variables included with this Repo\\n*  event_cover,event_date,event_location,event_past\\n*\\/\\n\\n$output = \\"\\";\\n$rows = \\"\\";\\n\\n$children = $modx->resource->getMany(\'Children\');\\nif(!$children){\\n    return \\"No Upcoming Events\\";\\n}\\n\\n$now = new DateTime();\\n\\nforeach ($children as $child) {\\n    $upcoming = true;\\n\\n    if($child->get(\'hidemenu\') == 0){\\n        \\/\\/qualifiers\\n        $past = $child->getTVValue(\'sel_event_past\');\\n        $date = new DateTime($child->getTVValue(\'sel_event_date\'));\\n\\n        if($past){ $upcoming = false; }\\n        if($date < $now) { $upcoming = false; $child->setTVValue(\'sel_event_past\', \\"true\\"); }\\n\\n        if($upcoming){\\n            $url = $modx->makeUrl($child->get(\'id\'));\\n            $title = $child->get(\'pagetitle\');\\n            $desc = $child->get(\'description\');\\n            $cover = $child->getTVValue(\'sel_event_cover\');\\n            $tvdate = $child->getTVValue(\'sel_event_date\');\\n            $location = $child->getTVValue(\'sel_event_location\');\\n\\n            $rows .= $modx->getChunk(\'SimpleEvents-upcoming-tpl\',\\n                array(\\n                    \'url\' => $url,\\n                    \'cover\' => $cover,\\n                    \'title\' => $title,\\n                    \'desc\' => $desc,\\n                    \'date\' => $tvdate,\\n                    \'location\' => $location\\n                )\\n            );\\n        }\\n    }\\n}\\n\\n$output = $modx->getChunk(\'SimpleEvents-upcoming-outer\', array(\'rows\' => $rows));\\nreturn $output;","locked":0,"properties":"a:0:{}","moduleguid":"","static":0,"static_file":"","content":"\\/* SimpleEventsUpcoming\\n*  Wayne Roddy ( wayne@modx.com )\\n*  Sept. 2016\\n*  I\'m not a PHP developer. No laughing\\n*  Shows Children (Events) that are \\"Upcoming\\" from this parent resource\\n*  Children (Events) of this parent should have the 4 Template Variables included with this Repo\\n*  event_cover,event_date,event_location,event_past\\n*\\/\\n\\n$output = \\"\\";\\n$rows = \\"\\";\\n\\n$children = $modx->resource->getMany(\'Children\');\\nif(!$children){\\n    return \\"No Upcoming Events\\";\\n}\\n\\n$now = new DateTime();\\n\\nforeach ($children as $child) {\\n    $upcoming = true;\\n\\n    if($child->get(\'hidemenu\') == 0){\\n        \\/\\/qualifiers\\n        $past = $child->getTVValue(\'sel_event_past\');\\n        $date = new DateTime($child->getTVValue(\'sel_event_date\'));\\n\\n        if($past){ $upcoming = false; }\\n        if($date < $now) { $upcoming = false; $child->setTVValue(\'sel_event_past\', \\"true\\"); }\\n\\n        if($upcoming){\\n            $url = $modx->makeUrl($child->get(\'id\'));\\n            $title = $child->get(\'pagetitle\');\\n            $desc = $child->get(\'description\');\\n            $cover = $child->getTVValue(\'sel_event_cover\');\\n            $tvdate = $child->getTVValue(\'sel_event_date\');\\n            $location = $child->getTVValue(\'sel_event_location\');\\n\\n            $rows .= $modx->getChunk(\'SimpleEvents-upcoming-tpl\',\\n                array(\\n                    \'url\' => $url,\\n                    \'cover\' => $cover,\\n                    \'title\' => $title,\\n                    \'desc\' => $desc,\\n                    \'date\' => $tvdate,\\n                    \'location\' => $location\\n                )\\n            );\\n        }\\n    }\\n}\\n\\n$output = $modx->getChunk(\'SimpleEvents-upcoming-outer\', array(\'rows\' => $rows));\\nreturn $output;"}',
+        'guid' => 'ed453037cb20bdc3f09d27391b27f14d',
+        'native_key' => NULL,
+        'signature' => 'e08548dcfe66f17b32ae53fa2304c179',
+      ),
+      '06bc7873f0f109f63f0e95fe7bfdbf18' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modSnippet',
+        'object' => '{"id":null,"source":0,"property_preprocess":0,"name":"SimpleEventsPast","description":"","editor_type":0,"category":0,"cache_type":0,"snippet":"\\/* PastEvents\\n*  Wayne Roddy ( wayne@modx.com )\\n*  Sept. 2016\\n*  I\'m not a PHP developer. No laughing\\n*  Shows Children (Events) that are \\"Past\\" from this parent resource\\n*  Children (Events) of this parent should have the 4 Template Variables included with this Repo\\n*  event_cover,event_date,event_location,event_past\\n*\\/\\n\\n$output = \\"\\";\\n$rows = \\"\\";\\n\\n$children = $modx->resource->getMany(\'Children\');\\nif(!$children){\\n    return \\"No Past Events\\";\\n}\\n\\nforeach ($children as $child) {\\n\\n    if($child->getTVValue(\'sel_event_past\')){\\n\\n        $url = $modx->makeUrl($child->get(\'id\'));\\n        $title = $child->get(\'pagetitle\');\\n        $tvdate = $child->getTVValue(\'sel_event_date\');\\n        $location = $child->getTVValue(\'sel_event_location\');\\n\\n        $rows .= $modx->getChunk(\'SimpleEvents-upcoming-tpl\',\\n            array(\\n                \'url\' => $url,\\n                \'title\' => $title,\\n                \'date\' => $tvdate,\\n                \'location\' => $location\\n            )\\n        );\\n\\n    }\\n}\\n\\n$output = $modx->getChunk(\'SimpleEvents-upcoming-outer\', array(\'rows\' => $rows));\\nreturn $output;","locked":0,"properties":"a:0:{}","moduleguid":"","static":0,"static_file":"","content":"\\/* PastEvents\\n*  Wayne Roddy ( wayne@modx.com )\\n*  Sept. 2016\\n*  I\'m not a PHP developer. No laughing\\n*  Shows Children (Events) that are \\"Past\\" from this parent resource\\n*  Children (Events) of this parent should have the 4 Template Variables included with this Repo\\n*  event_cover,event_date,event_location,event_past\\n*\\/\\n\\n$output = \\"\\";\\n$rows = \\"\\";\\n\\n$children = $modx->resource->getMany(\'Children\');\\nif(!$children){\\n    return \\"No Past Events\\";\\n}\\n\\nforeach ($children as $child) {\\n\\n    if($child->getTVValue(\'sel_event_past\')){\\n\\n        $url = $modx->makeUrl($child->get(\'id\'));\\n        $title = $child->get(\'pagetitle\');\\n        $tvdate = $child->getTVValue(\'sel_event_date\');\\n        $location = $child->getTVValue(\'sel_event_location\');\\n\\n        $rows .= $modx->getChunk(\'SimpleEvents-upcoming-tpl\',\\n            array(\\n                \'url\' => $url,\\n                \'title\' => $title,\\n                \'date\' => $tvdate,\\n                \'location\' => $location\\n            )\\n        );\\n\\n    }\\n}\\n\\n$output = $modx->getChunk(\'SimpleEvents-upcoming-outer\', array(\'rows\' => $rows));\\nreturn $output;"}',
+        'guid' => 'f004f4e24d90ade38fe450a8073b2a1c',
+        'native_key' => NULL,
+        'signature' => '6a49351ed3ea18b53534145d3f5a41f9',
+      ),
+    ),
+    'TemplateVars' => 
+    array (
+      'f4cb00b59f392f1f4bfc3edf97c2422d' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modTemplateVar',
+        'object' => '{"id":null,"source":0,"property_preprocess":0,"type":"image","name":"sel_event_cover","caption":"Cover Image","description":"optional","editor_type":0,"category":0,"locked":0,"elements":"","rank":0,"display":"","default_text":"","properties":"a:0:{}","input_properties":"a:1:{s:10:\\"allowBlank\\";i:1;}","output_properties":null,"static":0,"static_file":"","content":""}',
+        'guid' => 'c5a5aa04d435ea5f9e3718b3744ebde7',
+        'native_key' => NULL,
+        'signature' => 'f1dcc11ae2c2993375be515d432a797f',
+      ),
+      '732b899c30e520175ce3bab9be7b759a' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modTemplateVar',
+        'object' => '{"id":null,"source":0,"property_preprocess":0,"type":"date","name":"sel_event_date","caption":"Date","description":"required","editor_type":0,"category":0,"locked":0,"elements":"","rank":1,"display":"date","default_text":"","properties":"a:0:{}","input_properties":"a:1:{s:10:\\"allowBlank\\";i:0;}","output_properties":"a:1:{s:6:\\"format\\";s:20:\\"%a %B %d %Y %l:%M %p\\";}","static":0,"static_file":"","content":""}',
+        'guid' => '61260988efa606cdc1f230ef419918ec',
+        'native_key' => NULL,
+        'signature' => 'd0bb970956ace0d876e70aa3ca661ed9',
+      ),
+      'badbb2f35cfdfd9aa1c9b2a23d71ea76' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modTemplateVar',
+        'object' => '{"id":null,"source":0,"property_preprocess":0,"type":"text","name":"sel_event_location","caption":"Location","description":"Plain Text Description","editor_type":0,"category":0,"locked":0,"elements":"","rank":2,"display":"","default_text":"","properties":"a:0:{}","input_properties":"a:1:{s:10:\\"allowBlank\\";i:0;}","output_properties":null,"static":0,"static_file":"","content":""}',
+        'guid' => '984d01e6396bf8783dc8056a1cae049f',
+        'native_key' => NULL,
+        'signature' => '41d9797d02c2b917d8b684871220ec0e',
+      ),
+      '7fc30a0446d2fb252c7365f9fdf0a3f2' => 
+      array (
+        'preserve_keys' => false,
+        'update_object' => true,
+        'unique_key' => 'name',
+        'class' => 'modTemplateVar',
+        'object' => '{"id":null,"source":0,"property_preprocess":0,"type":"checkbox","name":"sel_event_past","caption":"Past Event","description":"set automatically by snippet, or manually","editor_type":0,"category":0,"locked":0,"elements":"Yes==true","rank":3,"display":"","default_text":"","properties":"a:0:{}","input_properties":"a:1:{s:10:\\"allowBlank\\";i:1;}","output_properties":null,"static":0,"static_file":"","content":""}',
+        'guid' => '525cdbc8042bb211f3d7c0055a3250c8',
+        'native_key' => NULL,
+        'signature' => '1ddd71caac8136c32604c028712852cd',
+      ),
+    ),
+  ),
+  'related_object_attributes' => 
+  array (
+    'Children' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 
+      array (
+        0 => 'parent',
+        1 => 'category',
+      ),
+    ),
+    'Snippets' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Chunks' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Templates' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'templatename',
+    ),
+    'TemplateVars' => 
+    array (
+      'preserve_keys' => false,
+      'update_object' => true,
+      'unique_key' => 'name',
+    ),
+    'Plugins' => 
+    array (
+      'unique_key' => 'name',
+      'preserve_keys' => false,
+      'update_object' => true,
+      'related_objects' => true,
+      'related_object_attributes' => 
+      array (
+        'PluginEvents' => 
+        array (
+          'preserve_keys' => true,
+          'update_object' => false,
+          'unique_key' => 
+          array (
+            0 => 'pluginid',
+            1 => 'event',
+          ),
+        ),
+      ),
+    ),
+  ),
+  'namespace' => 'simpleeventlist',
+  'resolve' => 
+  array (
+    0 => 
+    array (
+      'type' => 'file',
+      'body' => '{"source":"simpleeventlist-1.0.0-pl\\/modCategory\\/67a00e89084f524da7990c99ab630231\\/0\\/","target":"return MODX_CORE_PATH . \'components\\/\';","name":"simpleeventlist"}',
+    ),
+    1 => 
+    array (
+      'type' => 'php',
+      'body' => '{"source":"simpleeventlist-1.0.0-pl\\/modCategory\\/67a00e89084f524da7990c99ab630231.gpm.resolve.tv_templates.resolver","type":"php","name":"gpm.resolve.tv_templates"}',
+    ),
+  ),
+  'validate' => NULL,
+  'vehicle_package' => 'transport',
+  'vehicle_class' => 'xPDOObjectVehicle',
+  'guid' => '64b068781b2657cb3847bf19fbc4640d',
+  'package' => 'modx',
+  'class' => 'modCategory',
+  'signature' => '67a00e89084f524da7990c99ab630231',
+  'native_key' => NULL,
+  'object' => '{"id":null,"parent":0,"category":"Simple Event List","rank":0}',
+);

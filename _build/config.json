@@ -1,0 +1,82 @@
+{
+  "name": "Simple Event List",
+  "lowCaseName": "simpleeventlist",
+  "description": "Simple Event List for MODX",
+  "author": "Wayne Roddy",
+  "version": "1.0.0",
+  "package": {
+      "elements": {
+          "snippets": [
+            {
+              "name": "SimpleEventsUpcoming"
+            },
+            {
+              "name": "SimpleEventsPast"
+            }
+          ],
+          "chunks": [
+              {
+                "name": "SimpleEvents-upcoming-outer",
+                "file": "SimpleEvents-upcoming-outer.chunk.tpl"
+              },
+              {
+                "name": "SimpleEvents-upcoming-tpl",
+                "file": "SimpleEvents-upcoming-tpl.chunk.tpl"
+              }
+          ],
+          "tvs": [
+            {
+              "caption": "Cover Image",
+              "name": "sel_event_cover",
+              "description": "optional",
+              "type": "image",
+              "sortOrder": 0,
+              "inputProperties": {
+                "allowBlank": 1
+              }
+            },
+            {
+              "caption": "Date",
+              "name": "sel_event_date",
+              "description": "required",
+              "type": "date",
+              "display":"date",
+              "sortOrder": 1,
+              "inputProperties": {
+                "allowBlank": 0
+                },
+                "outputProperties": {
+                  "format": "%a %B %d %Y %l:%M %p"
+                }
+            },
+            {
+              "caption": "Location",
+              "name": "sel_event_location",
+              "description": "Plain Text Description",
+              "type": "text",
+              "sortOrder": 2,
+              "inputProperties": {
+                "allowBlank": 0
+              }
+            },
+            {
+              "caption": "Past Event",
+              "name": "sel_event_past",
+              "description": "set automatically by snippet, or manually",
+              "type": "checkbox",
+              "inputOptionValues": "Yes==true",
+              "sortOrder": 3,
+              "inputProperties": {
+                "allowBlank": 1
+              }
+            }
+          ]
+      }
+
+  },
+  "build": {
+    "readme": "docs/index.md",
+    "license": "docs/license.md",
+    "changelog": "docs/changelog.md"
+  }
+}
